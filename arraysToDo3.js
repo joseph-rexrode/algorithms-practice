@@ -106,3 +106,29 @@ function nthLargest(arr, n) {
 console.log(nthLargest([1,2,3,4,5], 4));
 
 
+//// SKYLINE HEIGHTS //// 
+
+// given [-1,1,1,7,3] => return [1,7]
+
+function skylineHeights(arr) {
+    // new array of visible buildings
+    var visibleBuildings = [];
+    
+    // visible buildings are only those that are higher
+    // than the previous highest building
+    var currentlyVisible = 0;
+
+    for (var i = 0; i < arr.length; i++) {
+        // if the building is taller than all previous ones
+        if (arr[i] > currentlyVisible) {
+            // add building to answer array and update tallest building
+            currentlyVisible = arr[i];
+            visibleBuildings.push(arr[i]);
+        }
+    }
+
+    return visibleBuildings;
+}
+
+console.log(skylineHeights([-1,1,1,7,3]));
+console.log(skylineHeights([0,4]));
